@@ -1,19 +1,20 @@
-const router = require('koa-router')()
+const router = require("koa-router")();
+const svgCaptcha = require("svg-captcha");
+const { sucModal, errModal } = require("../utils");
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
+router.get("/captcha", async (ctx) => {
+  const { data, text } = svgCaptcha.create({
+    size: 4,
+    width: 100,
+    height: 40,
+    fontSize: 50,
+    ignoreChars: "0oO1ilI",
+    noise: 2,
+    color: true,
+    background: "#eee",
+  });
+  ctx.session.captchaText = text.toLowerCase();
+  ctx.body = sucModal(data);
+});
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
-
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
-
-module.exports = router
+module.exports = router;
