@@ -22,7 +22,6 @@
     "koa-session": "^6.2.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
-    "md5": "^2.3.0",
     "mysql2": "^2.2.5",
     "pug": "^2.0.3",
     "sequelize": "^6.6.2",
